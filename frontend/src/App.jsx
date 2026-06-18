@@ -1,21 +1,27 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Login from "./pages/Login";
+
+import Dashboard from "./pages/Dashboard";
+
 function App() {
+
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
 
-      <div className="bg-white p-10 rounded-xl shadow-lg text-center">
+    <BrowserRouter>
 
-        <h1 className="text-4xl font-bold text-blue-600">
-          Restaurant ERP
-        </h1>
+      <Routes>
 
-        <p className="mt-4 text-gray-600">
-          MCA Final Year Project
-        </p>
+        <Route path="/" element={<Login />} />
 
-      </div>
+        <Route path="/dashboard" element={<Dashboard />} />
 
-    </div>
-  )
+      </Routes>
+
+    </BrowserRouter>
+
+  );
+
 }
 
-export default App
+export default App;
