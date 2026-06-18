@@ -10,13 +10,38 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     @Autowired
-
     private UserRepository userRepository;
 
 
     public User createUser(User user){
 
         return userRepository.save(user);
+
+    }
+
+
+    public User loginUser(String email, String password){
+
+        User user = userRepository
+                .findByEmail(email)
+                .orElse(null);
+
+
+        if(user == null){
+
+            return null;
+
+        }
+
+
+        if(!user.getPassword().equals(password)){
+
+            return null;
+
+        }
+
+
+        return user;
 
     }
 
