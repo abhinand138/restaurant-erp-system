@@ -42,4 +42,12 @@ public class MenuItemController {
 
     }
 
+    @GetMapping("/count")
+
+    public long getMenuCount(){
+
+    return service.getAllMenuItems().size();
+
+}
+
 }

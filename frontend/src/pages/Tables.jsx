@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import Sidebar from "../components/Sidebar";
+
 import api from "../services/api";
 
 function Tables() {
@@ -35,48 +37,54 @@ function Tables() {
 
   return (
 
-    <div className="p-10">
+    <div className="flex min-h-screen">
 
-      <h1 className="text-3xl font-bold mb-6">
+      <Sidebar />
 
-        Restaurant Tables
+      <div className="flex-1 p-10">
 
-      </h1>
+        <h1 className="text-3xl font-bold mb-6">
+
+          Restaurant Tables
+
+        </h1>
 
 
-      <div className="space-y-4">
+        <div className="space-y-4">
 
-        {tables.map((table) => (
+          {tables.map((table) => (
 
-          <div
+            <div
 
-            key={table.id}
+              key={table.id}
 
-            className="border p-4 rounded shadow"
+              className="border p-4 rounded shadow"
 
-          >
+            >
 
-            <h2 className="text-xl font-bold">
+              <h2 className="text-xl font-bold">
 
-              {table.tableName}
+                {table.tableName}
 
-            </h2>
+              </h2>
 
-            <p>
+              <p>
 
-              Capacity : {table.capacity}
+                Capacity : {table.capacity}
 
-            </p>
+              </p>
 
-            <p>
+              <p>
 
-              Status : {table.status}
+                Status : {table.status}
 
-            </p>
+              </p>
 
-          </div>
+            </div>
 
-        ))}
+          ))}
+
+        </div>
 
       </div>
 

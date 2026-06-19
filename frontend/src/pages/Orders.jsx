@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import Sidebar from "../components/Sidebar";
+
 import api from "../services/api";
 
 function Orders() {
@@ -35,57 +37,60 @@ function Orders() {
 
   return (
 
-    <div className="p-10">
+    <div className="flex min-h-screen">
 
-      <h1 className="text-3xl font-bold mb-6">
+      <Sidebar />
 
-        Orders Management
+      <div className="flex-1 p-10">
 
-      </h1>
+        <h1 className="text-3xl font-bold mb-6">
 
+          Orders Management
 
-      <div className="space-y-4">
-
-        {orders.map((order) => (
-
-          <div
-
-            key={order.id}
-
-            className="border p-4 rounded shadow"
-
-          >
-
-            <h2 className="text-xl font-bold">
-
-              {order.foodName}
-
-            </h2>
+        </h1>
 
 
-            <p>
+        <div className="space-y-4">
 
-              Table : {order.tableName}
+          {orders.map((order) => (
 
-            </p>
+            <div
 
+              key={order.id}
 
-            <p>
+              className="border p-4 rounded shadow"
 
-              Quantity : {order.quantity}
+            >
 
-            </p>
+              <h2 className="text-xl font-bold">
 
+                {order.foodName}
 
-            <p>
+              </h2>
 
-              Status : {order.status}
+              <p>
 
-            </p>
+                Table : {order.tableName}
 
-          </div>
+              </p>
 
-        ))}
+              <p>
+
+                Quantity : {order.quantity}
+
+              </p>
+
+              <p>
+
+                Status : {order.status}
+
+              </p>
+
+            </div>
+
+          ))}
+
+        </div>
 
       </div>
 

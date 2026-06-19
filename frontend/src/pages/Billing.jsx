@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import Sidebar from "../components/Sidebar";
+
 import api from "../services/api";
 
 function Billing() {
@@ -35,50 +37,54 @@ function Billing() {
 
   return (
 
-    <div className="p-10">
+    <div className="flex min-h-screen">
 
-      <h1 className="text-3xl font-bold mb-6">
+      <Sidebar />
 
-        Billing Management
+      <div className="flex-1 p-10">
 
-      </h1>
+        <h1 className="text-3xl font-bold mb-6">
 
+          Billing Management
 
-      <div className="space-y-4">
-
-        {bills.map((bill) => (
-
-          <div
-
-            key={bill.id}
-
-            className="border p-4 rounded shadow"
-
-          >
-
-            <p>
-
-              Subtotal : ₹{bill.subtotal}
-
-            </p>
+        </h1>
 
 
-            <p>
+        <div className="space-y-4">
 
-              GST : ₹{bill.gst}
+          {bills.map((bill) => (
 
-            </p>
+            <div
 
+              key={bill.id}
 
-            <p>
+              className="border p-4 rounded shadow"
 
-              Total : ₹{bill.total}
+            >
 
-            </p>
+              <p>
 
-          </div>
+                Subtotal : ₹{bill.subtotal}
 
-        ))}
+              </p>
+
+              <p>
+
+                GST : ₹{bill.gst}
+
+              </p>
+
+              <p>
+
+                Total : ₹{bill.total}
+
+              </p>
+
+            </div>
+
+          ))}
+
+        </div>
 
       </div>
 

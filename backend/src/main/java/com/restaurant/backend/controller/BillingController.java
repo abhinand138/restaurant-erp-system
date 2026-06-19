@@ -42,4 +42,18 @@ public class BillingController {
 
     }
 
+    @GetMapping("/revenue")
+
+    public double getRevenue(){
+
+    return service.getAllBills()
+
+            .stream()
+
+            .mapToDouble(Billing::getTotal)
+
+            .sum();
+
+}
+
 }

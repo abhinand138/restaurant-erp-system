@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import Sidebar from "../components/Sidebar";
+
 import api from "../services/api";
 
 function Menu() {
@@ -35,50 +37,54 @@ function Menu() {
 
   return (
 
-    <div className="p-10">
+    <div className="flex min-h-screen">
 
-      <h1 className="text-3xl font-bold mb-6">
+      <Sidebar />
 
-        Menu Management
+      <div className="flex-1 p-10">
 
-      </h1>
+        <h1 className="text-3xl font-bold mb-6">
 
+          Menu Management
 
-      <div className="space-y-4">
-
-        {menuItems.map((item) => (
-
-          <div
-
-            key={item.id}
-
-            className="border p-4 rounded shadow"
-
-          >
-
-            <h2 className="text-xl font-bold">
-
-              {item.name}
-
-            </h2>
+        </h1>
 
 
-            <p>
+        <div className="space-y-4">
 
-              Price : ₹{item.price}
+          {menuItems.map((item) => (
 
-            </p>
+            <div
 
+              key={item.id}
 
-            <p>
+              className="border p-4 rounded shadow"
 
-              Category : {item.category}
+            >
 
-            </p>
+              <h2 className="text-xl font-bold">
 
-          </div>
+                {item.name}
 
-        ))}
+              </h2>
+
+              <p>
+
+                Price : ₹{item.price}
+
+              </p>
+
+              <p>
+
+                Category : {item.category}
+
+              </p>
+
+            </div>
+
+          ))}
+
+        </div>
 
       </div>
 

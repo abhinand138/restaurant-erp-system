@@ -42,4 +42,12 @@ public class OrderController {
 
     }
 
+    @GetMapping("/count")
+
+    public long getOrderCount(){
+
+    return service.getAllOrders().size();
+
+}
+
 }

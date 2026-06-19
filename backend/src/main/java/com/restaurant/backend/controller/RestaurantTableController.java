@@ -42,4 +42,12 @@ public class RestaurantTableController {
 
     }
 
+    @GetMapping("/count")
+
+     public long getTableCount(){
+
+    return service.getAllTables().size();
+
+}
+
 }
