@@ -1,63 +1,49 @@
-import { useNavigate } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
 
 function Dashboard() {
 
-  const navigate = useNavigate();
-
   return (
 
-    <div className="min-h-screen bg-gray-100">
+    <div className="flex">
 
-      <div className="bg-white shadow p-6">
+      <Sidebar />
 
-        <h1 className="text-4xl font-bold">
+      <div className="flex-1 p-10">
 
-          Smart Restaurant ERP
+        <h1 className="text-4xl font-bold mb-8">
+
+          Dashboard
         </h1>
 
-      </div>
-
-
-      <div className="p-10">
 
         <div className="grid grid-cols-2 gap-6">
 
-          <button
+          <div className="bg-blue-500 text-white p-6 rounded">
 
-            onClick={() => navigate("/tables")}
+            Tables Module
 
-            className="bg-blue-600 text-white p-6 rounded-lg text-2xl"
-
-          >
-
-            🪑 Tables
-
-          </button>
+          </div>
 
 
-          <button
+          <div className="bg-green-500 text-white p-6 rounded">
 
-            onClick={() => navigate("/menu")}
+            Menu Module
 
-            className="bg-green-600 text-white p-6 rounded-lg text-2xl"
+          </div>
 
-          >
 
-            🍔 Menu
+          <div className="bg-orange-500 text-white p-6 rounded">
 
-          </button>
+            Orders Module
 
-           <button
+          </div>
 
-           onClick={() => navigate("/orders")}
 
-           className="bg-orange-600 text-white p-6 rounded-lg text-2xl"
+          <div className="bg-purple-500 text-white p-6 rounded">
 
-         >
+            Billing Module
 
-         📦 Orders
-
-        </button>
+          </div>
 
         </div>
 

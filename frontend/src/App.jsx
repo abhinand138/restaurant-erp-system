@@ -10,6 +10,8 @@ import Menu from "./pages/Menu";
 
 import Orders from "./pages/Orders";
 
+import Billing from "./pages/Billing";
+
 function App() {
 
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path="/menu" element={<Menu />} />
 
         <Route path="/orders" element={<Orders />} />
+
+        <Route path="/billing" element={<Billing />} />
 
       </Routes>
 
