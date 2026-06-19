@@ -47,6 +47,18 @@ function Dashboard() {
 
           </button>
 
+           <button
+
+           onClick={() => navigate("/orders")}
+
+           className="bg-orange-600 text-white p-6 rounded-lg text-2xl"
+
+         >
+
+         📦 Orders
+
+        </button>
+
         </div>
 
       </div>

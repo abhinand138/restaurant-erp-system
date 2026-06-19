@@ -8,6 +8,8 @@ import Tables from "./pages/Tables";
 
 import Menu from "./pages/Menu";
 
+import Orders from "./pages/Orders";
+
 function App() {
 
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path="/tables" element={<Tables />} />
 
         <Route path="/menu" element={<Menu />} />
+
+        <Route path="/orders" element={<Orders />} />
 
       </Routes>
 
