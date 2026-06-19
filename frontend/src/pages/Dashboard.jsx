@@ -6,26 +6,50 @@ function Dashboard() {
 
   return (
 
-    <div className="min-h-screen p-10">
+    <div className="min-h-screen bg-gray-100">
 
-      <h1 className="text-4xl font-bold mb-10">
+      <div className="bg-white shadow p-6">
 
-        Restaurant ERP Dashboard
+        <h1 className="text-4xl font-bold">
 
-      </h1>
+          Smart Restaurant ERP
+        </h1>
+
+      </div>
 
 
-      <button
+      <div className="p-10">
 
-        className="bg-blue-600 text-white px-6 py-3 rounded"
+        <div className="grid grid-cols-2 gap-6">
 
-        onClick={() => navigate("/tables")}
+          <button
 
-      >
+            onClick={() => navigate("/tables")}
 
-        Manage Tables
+            className="bg-blue-600 text-white p-6 rounded-lg text-2xl"
 
-      </button>
+          >
+
+            🪑 Tables
+
+          </button>
+
+
+          <button
+
+            onClick={() => navigate("/menu")}
+
+            className="bg-green-600 text-white p-6 rounded-lg text-2xl"
+
+          >
+
+            🍔 Menu
+
+          </button>
+
+        </div>
+
+      </div>
 
     </div>
 
