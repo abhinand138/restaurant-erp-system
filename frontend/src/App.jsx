@@ -14,6 +14,8 @@ import Orders from "./pages/Orders";
 
 import Billing from "./pages/Billing";
 
+import Analytics from "./pages/Analytics";
+
 function App() {
 
   return (
@@ -35,6 +37,8 @@ function App() {
         <Route path="/orders" element={<Orders />} />
 
         <Route path="/billing" element={<Billing />} />
+
+        <Route path="/analytics" element={<Analytics />} />
 
       </Routes>
 

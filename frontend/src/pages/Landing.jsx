@@ -127,6 +127,12 @@ function Landing() {
 
       </div>
 
+      <footer className="mt-20 text-center text-gray-500">
+
+      Built with React, Spring Boot and PostgreSQL
+
+      </footer>
+
     </div>
 
   );

@@ -28,9 +28,17 @@ function Login() {
 
       if (response.data.success) {
 
-        navigate("/dashboard");
+   localStorage.setItem(
 
-      } else {
+      "role",
+
+      response.data.role
+
+   );
+
+   navigate("/dashboard");
+
+} else {
 
         alert(response.data.message);
 
