@@ -1,10 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Sidebar() {
 
   const navigate = useNavigate();
 
+  const location = useLocation();
+
   const role = localStorage.getItem("role");
+
 
   const logout = () => {
 
@@ -14,13 +17,25 @@ function Sidebar() {
 
   };
 
+
+  const activeClass = (path) => {
+
+    return location.pathname === path
+
+      ? "bg-blue-600"
+
+      : "hover:bg-blue-600";
+
+  };
+
+
   return (
 
     <div className="w-64 min-h-screen bg-gray-900 text-white p-6">
 
       <h1 className="text-3xl font-bold mb-10">
 
-        Restaurant ERP
+        🍽️ Restaurant ERP
 
       </h1>
 
@@ -32,7 +47,7 @@ function Sidebar() {
 
           onClick={() => navigate("/dashboard")}
 
-          className="w-full text-left p-3 hover:bg-gray-700 rounded"
+          className={`w-full text-left p-3 rounded transition duration-300 ${activeClass("/dashboard")}`}
 
         >
 
@@ -49,7 +64,7 @@ function Sidebar() {
 
             onClick={() => navigate("/tables")}
 
-            className="w-full text-left p-3 hover:bg-gray-700 rounded"
+            className={`w-full text-left p-3 rounded transition duration-300 ${activeClass("/tables")}`}
 
           >
 
@@ -68,7 +83,7 @@ function Sidebar() {
 
             onClick={() => navigate("/menu")}
 
-            className="w-full text-left p-3 hover:bg-gray-700 rounded"
+            className={`w-full text-left p-3 rounded transition duration-300 ${activeClass("/menu")}`}
 
           >
 
@@ -89,7 +104,7 @@ function Sidebar() {
 
             onClick={() => navigate("/orders")}
 
-            className="w-full text-left p-3 hover:bg-gray-700 rounded"
+            className={`w-full text-left p-3 rounded transition duration-300 ${activeClass("/orders")}`}
 
           >
 
@@ -108,7 +123,7 @@ function Sidebar() {
 
             onClick={() => navigate("/billing")}
 
-            className="w-full text-left p-3 hover:bg-gray-700 rounded"
+            className={`w-full text-left p-3 rounded transition duration-300 ${activeClass("/billing")}`}
 
           >
 
@@ -127,7 +142,7 @@ function Sidebar() {
 
             onClick={() => navigate("/analytics")}
 
-            className="w-full text-left p-3 hover:bg-gray-700 rounded"
+            className={`w-full text-left p-3 rounded transition duration-300 ${activeClass("/analytics")}`}
 
           >
 
@@ -142,14 +157,13 @@ function Sidebar() {
 
           onClick={logout}
 
-          className="w-full text-left p-3 mt-10 bg-red-500 hover:bg-red-600 rounded"
+          className="w-full text-left p-3 mt-10 bg-red-500 hover:bg-red-600 rounded transition duration-300"
 
         >
 
           🚪 Logout
 
         </button>
-
 
       </div>
 

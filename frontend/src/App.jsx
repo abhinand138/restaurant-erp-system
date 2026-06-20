@@ -16,6 +16,8 @@ import Billing from "./pages/Billing";
 
 import Analytics from "./pages/Analytics";
 
+import ProtectedRoute from "./components/ProtectedRoute";
+
 function App() {
 
   return (
@@ -30,15 +32,56 @@ function App() {
 
         <Route path="/dashboard" element={<Dashboard />} />
 
-        <Route path="/tables" element={<Tables />} />
+        <Route
+        path="/tables"
+        element={
+             <ProtectedRoute allowedRoles={["ADMIN", "MANAGER"]}>
+         <Tables />
+         </ProtectedRoute>
+        }
+        />
 
-        <Route path="/menu" element={<Menu />} />
+        <Route
+        path="/menu"
+        element={
+        <ProtectedRoute allowedRoles={["ADMIN", "MANAGER"]}>
+        <Menu />
+        </ProtectedRoute>
+        }
+        />
 
-        <Route path="/orders" element={<Orders />} />
+        <Route
+        path="/orders"
+        element={
+        <ProtectedRoute
+        allowedRoles={["ADMIN", "MANAGER", "CASHIER"]}
+       >
+       <Orders />
+       </ProtectedRoute>
+      }
+      />
 
-        <Route path="/billing" element={<Billing />} />
+        <Route
+        path="/billing"
+        element={
+        <ProtectedRoute
+        allowedRoles={["ADMIN", "CASHIER"]}
+       >
+       <Billing />
+       </ProtectedRoute>
+      }
+      />
 
-        <Route path="/analytics" element={<Analytics />} />
+        <Route
+        path="/analytics"
+        element={
+       <ProtectedRoute
+        allowedRoles={["ADMIN", "MANAGER"]}
+       >
+       <Analytics />
+      </ProtectedRoute>
+      }
+      />
 
       </Routes>
 

@@ -6,120 +6,149 @@ function Landing() {
 
   return (
 
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-950 text-white">
 
-      <div className="max-w-6xl mx-auto px-10 py-20">
+      {/* Navbar */}
 
-        <div className="grid md:grid-cols-2 gap-10 items-center">
+      <nav className="flex justify-between items-center px-10 py-6">
 
-          <div>
+        <h1 className="text-4xl font-bold text-yellow-400">
 
-            <h1 className="text-6xl font-bold mb-6">
+          🍽️ Restaurant ERP
 
-              Smart Restaurant ERP
+        </h1>
 
-            </h1>
+        <button
 
-            <p className="text-xl text-gray-600 mb-10">
+          onClick={() => navigate("/login")}
 
-              A complete restaurant management system for managing tables, menu items, orders, billing and analytics.
+          className="bg-yellow-400 text-black px-6 py-3 rounded-xl font-bold hover:scale-105 transition"
 
-            </p>
+        >
 
-            <button
+          Login
 
-              onClick={() => navigate("/login")}
+        </button>
 
-              className="bg-black text-white px-8 py-4 rounded-lg text-xl"
-
-            >
-
-              Get Started
-
-            </button>
-
-          </div>
+      </nav>
 
 
-          <div>
+      {/* Hero */}
 
-            <img
+      <div className="max-w-7xl mx-auto px-10 py-16 grid md:grid-cols-2 gap-16 items-center">
 
-              src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"
+        <div>
 
-              alt="restaurant"
+          <h1 className="text-6xl font-bold leading-tight">
 
-              className="rounded-xl shadow-lg"
+            Smart Restaurant
 
-            />
+            <span className="text-yellow-400">
 
-          </div>
+              {" "}Management
+
+            </span>
+
+          </h1>
+
+
+          <p className="text-gray-400 text-xl mt-8">
+
+            A complete ERP system to manage
+
+            tables, menu, orders, billing,
+
+            analytics and staff operations.
+
+          </p>
+
+
+          <button
+
+            onClick={() => navigate("/login")}
+
+            className="mt-10 bg-yellow-400 text-black px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition"
+
+          >
+
+            Get Started →
+
+          </button>
 
         </div>
 
 
-        <div className="mt-24">
+        <div>
 
-          <h2 className="text-4xl font-bold mb-10 text-center">
+          <img
 
-            Features
+            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"
 
-          </h2>
+            alt="restaurant"
 
+            className="rounded-3xl shadow-2xl"
 
-          <div className="grid md:grid-cols-4 gap-6">
+          />
 
+        </div>
 
-            <div className="bg-white p-6 rounded-lg shadow">
-
-              🪑
-
-              <h3 className="font-bold mt-3">
-
-                Tables
-
-              </h3>
-
-            </div>
+      </div>
 
 
-            <div className="bg-white p-6 rounded-lg shadow">
+      {/* Features */}
 
-              🍔
+      <div className="max-w-7xl mx-auto px-10 pb-16">
 
-              <h3 className="font-bold mt-3">
+        <div className="grid md:grid-cols-4 gap-6">
 
-                Menu
+          <div className="bg-gray-900 p-8 rounded-2xl">
 
-              </h3>
+            🪑
 
-            </div>
+            <h2 className="text-2xl font-bold mt-4">
 
+              Tables
 
-            <div className="bg-white p-6 rounded-lg shadow">
+            </h2>
 
-              📦
-
-              <h3 className="font-bold mt-3">
-
-                Orders
-
-              </h3>
-
-            </div>
+          </div>
 
 
-            <div className="bg-white p-6 rounded-lg shadow">
+          <div className="bg-gray-900 p-8 rounded-2xl">
 
-              🧾
+            🍔
 
-              <h3 className="font-bold mt-3">
+            <h2 className="text-2xl font-bold mt-4">
 
-                Billing
+              Menu
 
-              </h3>
+            </h2>
 
-            </div>
+          </div>
+
+
+          <div className="bg-gray-900 p-8 rounded-2xl">
+
+            📦
+
+            <h2 className="text-2xl font-bold mt-4">
+
+              Orders
+
+            </h2>
+
+          </div>
+
+
+          <div className="bg-gray-900 p-8 rounded-2xl">
+
+            📈
+
+            <h2 className="text-2xl font-bold mt-4">
+
+              Analytics
+
+            </h2>
 
           </div>
 
@@ -127,11 +156,21 @@ function Landing() {
 
       </div>
 
-      <footer className="mt-20 text-center text-gray-500">
+      <footer className="border-t border-gray-800 py-8 mt-16">
 
-      Built with React, Spring Boot and PostgreSQL
+  <div className="text-center text-gray-400">
 
-      </footer>
+    © 2026 Restaurant ERP System
+
+  </div>
+
+  <div className="text-center text-gray-500 mt-2">
+
+    Built using React + Spring Boot + PostgreSQL
+
+  </div>
+
+</footer>
 
     </div>
 

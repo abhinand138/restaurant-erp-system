@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
-
 import Sidebar from "../components/Sidebar";
+
+import Navbar from "../components/Navbar";
+
+import { useEffect, useState } from "react";
 
 import api from "../services/api";
 
@@ -54,82 +56,233 @@ function Dashboard() {
   };
 
 
-  return(
+  return (
 
-    <div className="flex min-h-screen">
+<div className="flex min-h-screen bg-gray-100">
 
-      <Sidebar/>
+<Sidebar/>
 
-      <div className="flex-1 p-10 bg-gray-100">
+<div className="flex-1">
 
-        <h1 className="text-4xl font-bold mb-10">
-
-          Dashboard
-
-        </h1>
+<Navbar/>
 
 
-        <div className="grid grid-cols-2 gap-6">
+<div className="p-10">
 
 
-          <div className="bg-blue-500 text-white p-8 rounded-lg shadow">
+<div className="bg-gradient-to-r from-blue-700 to-purple-700 text-white rounded-3xl p-10 mb-10 shadow-xl">
 
-            <h2>🪑 Tables</h2>
+<h1 className="text-5xl font-bold">
 
-            <p className="text-5xl font-bold">
+Welcome Back 👋
 
-              {tableCount}
-
-            </p>
-
-          </div>
+</h1>
 
 
-          <div className="bg-green-500 text-white p-8 rounded-lg shadow">
+<p className="text-xl mt-4 text-blue-100">
 
-            <h2>🍔 Menu Items</h2>
+Manage your restaurant efficiently.
 
-            <p className="text-5xl font-bold">
-
-              {menuCount}
-
-            </p>
-
-          </div>
+</p>
 
 
-          <div className="bg-orange-500 text-white p-8 rounded-lg shadow">
+<div className="mt-6 inline-block bg-white text-blue-700 px-6 py-3 rounded-full font-bold">
 
-            <h2>📦 Orders</h2>
+{localStorage.getItem("role")}
 
-            <p className="text-5xl font-bold">
+</div>
 
-              {orderCount}
-
-            </p>
-
-          </div>
+</div>
 
 
-          <div className="bg-purple-500 text-white p-8 rounded-lg shadow">
 
-            <h2>🧾 Revenue</h2>
+<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-            <p className="text-5xl font-bold">
 
-              ₹{revenue}
+<div className="bg-white p-8 rounded-3xl shadow-lg hover:scale-105 transition">
 
-            </p>
+<div className="text-5xl">
 
-          </div>
+🪑
 
-        </div>
+</div>
 
-      </div>
 
-    </div>
+<h2 className="text-2xl font-bold mt-4">
 
-  );
+Tables
+
+</h2>
+
+
+<p className="text-5xl font-bold text-blue-600 mt-4">
+
+{tableCount}
+
+</p>
+
+</div>
+
+
+
+<div className="bg-white p-8 rounded-3xl shadow-lg hover:scale-105 transition">
+
+<div className="text-5xl">
+
+🍔
+
+</div>
+
+
+<h2 className="text-2xl font-bold mt-4">
+
+Menu
+
+</h2>
+
+
+<p className="text-5xl font-bold text-green-600 mt-4">
+
+{menuCount}
+
+</p>
+
+</div>
+
+
+
+<div className="bg-white p-8 rounded-3xl shadow-lg hover:scale-105 transition">
+
+<div className="text-5xl">
+
+📦
+
+</div>
+
+
+<h2 className="text-2xl font-bold mt-4">
+
+Orders
+
+</h2>
+
+
+<p className="text-5xl font-bold text-orange-600 mt-4">
+
+{orderCount}
+
+</p>
+
+</div>
+
+
+
+<div className="bg-white p-8 rounded-3xl shadow-lg hover:scale-105 transition">
+
+<div className="text-5xl">
+
+🧾
+
+</div>
+
+
+<h2 className="text-2xl font-bold mt-4">
+
+Revenue
+
+</h2>
+
+
+<p className="text-4xl font-bold text-purple-600 mt-4">
+
+₹{revenue}
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<div className="mt-12">
+
+<h2 className="text-3xl font-bold mb-6">
+
+Quick Actions
+
+</h2>
+
+
+<div className="grid md:grid-cols-4 gap-6">
+
+
+<button
+
+onClick={()=>navigate("/tables")}
+
+className="bg-blue-600 text-white p-6 rounded-2xl hover:scale-105 transition"
+
+>
+
+🪑 Manage Tables
+
+</button>
+
+
+
+<button
+
+onClick={()=>navigate("/menu")}
+
+className="bg-green-600 text-white p-6 rounded-2xl hover:scale-105 transition"
+
+>
+
+🍔 Manage Menu
+
+</button>
+
+
+
+<button
+
+onClick={()=>navigate("/orders")}
+
+className="bg-orange-600 text-white p-6 rounded-2xl hover:scale-105 transition"
+
+>
+
+📦 Manage Orders
+
+</button>
+
+
+
+<button
+
+onClick={()=>navigate("/billing")}
+
+className="bg-purple-600 text-white p-6 rounded-2xl hover:scale-105 transition"
+
+>
+
+🧾 Manage Billing
+
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+);
 
 }
 

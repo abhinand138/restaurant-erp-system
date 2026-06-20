@@ -4,6 +4,8 @@ import Sidebar from "../components/Sidebar";
 
 import api from "../services/api";
 
+import Navbar from "../components/Navbar";
+
 function Billing() {
 
   const [bills, setBills] = useState([]);
@@ -37,11 +39,15 @@ function Billing() {
 
   return (
 
-    <div className="flex min-h-screen">
+  <div className="flex min-h-screen">
 
-      <Sidebar />
+    <Sidebar/>
 
-      <div className="flex-1 p-10">
+    <div className="flex-1">
+
+      <Navbar/>
+
+      <div className="p-10">
 
         <h1 className="text-3xl font-bold mb-6">
 
@@ -90,7 +96,9 @@ function Billing() {
 
     </div>
 
-  );
+  </div>
+
+);
 
 }
 

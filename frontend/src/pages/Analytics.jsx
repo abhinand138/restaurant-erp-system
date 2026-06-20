@@ -1,14 +1,20 @@
 import Sidebar from "../components/Sidebar";
 
+import Navbar from "../components/Navbar";
+
 function Analytics() {
 
   return (
 
-    <div className="flex min-h-screen">
+  <div className="flex min-h-screen">
 
-      <Sidebar />
+    <Sidebar/>
 
-      <div className="flex-1 p-10 bg-gray-100">
+    <div className="flex-1">
+
+      <Navbar/>
+
+      <div className="p-10">
 
         <h1 className="text-4xl font-bold mb-10">
 
@@ -93,7 +99,9 @@ function Analytics() {
 
     </div>
 
-  );
+  </div>
+
+);
 
 }
 
