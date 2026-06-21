@@ -4,37 +4,57 @@ import Navbar from "../components/Navbar";
 
 import { useEffect, useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import api from "../services/api";
 
 function Dashboard() {
 
-  const [tableCount,setTableCount]=useState(0);
+  const navigate = useNavigate();
 
-  const [menuCount,setMenuCount]=useState(0);
+  const [tableCount, setTableCount] = useState(0);
 
-  const [orderCount,setOrderCount]=useState(0);
+  const [menuCount, setMenuCount] = useState(0);
 
-  const [revenue,setRevenue]=useState(0);
+  const [orderCount, setOrderCount] = useState(0);
+
+  const [revenue, setRevenue] = useState(0);
 
 
-  useEffect(()=>{
+  useEffect(() => {
 
     fetchDashboard();
 
-  },[]);
+  }, []);
 
 
-  const fetchDashboard=async()=>{
+  const fetchDashboard = async () => {
 
-    try{
+    try {
 
-      const table=await api.get("/api/tables/count");
+      const table = await api.get(
 
-      const menu=await api.get("/api/menu/count");
+        "/api/tables/count"
 
-      const order=await api.get("/api/orders/count");
+      );
 
-      const bill=await api.get("/api/billing/revenue");
+      const menu = await api.get(
+
+        "/api/menu/count"
+
+      );
+
+      const order = await api.get(
+
+        "/api/orders/count"
+
+      );
+
+      const bill = await api.get(
+
+        "/api/billing/revenue"
+
+      );
 
 
       setTableCount(table.data);
@@ -58,231 +78,307 @@ function Dashboard() {
 
   return (
 
-<div className="flex min-h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-gray-100">
 
-<Sidebar/>
+      <Sidebar/>
 
-<div className="flex-1">
+      <div className="flex-1">
 
-<Navbar/>
+        <Navbar/>
 
 
-<div className="p-10">
+        <div className="p-10">
 
 
-<div className="bg-gradient-to-r from-blue-700 to-purple-700 text-white rounded-3xl p-10 mb-10 shadow-xl">
+          {/* Hero Section */}
 
-<h1 className="text-5xl font-bold">
+          <div className="bg-gradient-to-r from-blue-700 to-purple-700 text-white rounded-3xl p-10 mb-10 shadow-xl">
 
-Welcome Back 👋
 
-</h1>
+            <h1 className="text-5xl font-bold">
 
+              Welcome Back 👋
 
-<p className="text-xl mt-4 text-blue-100">
+            </h1>
 
-Manage your restaurant efficiently.
 
-</p>
+            <p className="text-xl mt-4 text-blue-100">
 
+              Manage your restaurant efficiently.
 
-<div className="mt-6 inline-block bg-white text-blue-700 px-6 py-3 rounded-full font-bold">
+            </p>
 
-{localStorage.getItem("role")}
 
-</div>
+            <div className="mt-6 inline-block bg-white text-blue-700 px-6 py-3 rounded-full font-bold">
 
-</div>
+              {localStorage.getItem("role")}
 
+            </div>
 
+          </div>
 
-<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 
+          {/* Statistics Cards */}
 
-<div className="bg-white p-8 rounded-3xl shadow-lg hover:scale-105 transition">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-<div className="text-5xl">
 
-🪑
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:scale-105 transition">
 
-</div>
+              <div className="text-5xl">
 
+                🪑
 
-<h2 className="text-2xl font-bold mt-4">
+              </div>
 
-Tables
 
-</h2>
+              <h2 className="text-2xl font-bold mt-4">
 
+                Tables
 
-<p className="text-5xl font-bold text-blue-600 mt-4">
+              </h2>
 
-{tableCount}
 
-</p>
+              <p className="text-5xl font-bold text-blue-600 mt-4">
 
-</div>
+                {tableCount}
 
+              </p>
 
+            </div>
 
-<div className="bg-white p-8 rounded-3xl shadow-lg hover:scale-105 transition">
 
-<div className="text-5xl">
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:scale-105 transition">
 
-🍔
+              <div className="text-5xl">
 
-</div>
+                🍔
 
+              </div>
 
-<h2 className="text-2xl font-bold mt-4">
 
-Menu
+              <h2 className="text-2xl font-bold mt-4">
 
-</h2>
+                Menu
 
+              </h2>
 
-<p className="text-5xl font-bold text-green-600 mt-4">
 
-{menuCount}
+              <p className="text-5xl font-bold text-green-600 mt-4">
 
-</p>
+                {menuCount}
 
-</div>
+              </p>
 
+            </div>
 
 
-<div className="bg-white p-8 rounded-3xl shadow-lg hover:scale-105 transition">
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:scale-105 transition">
 
-<div className="text-5xl">
+              <div className="text-5xl">
 
-📦
+                📦
 
-</div>
+              </div>
 
 
-<h2 className="text-2xl font-bold mt-4">
+              <h2 className="text-2xl font-bold mt-4">
 
-Orders
+                Orders
 
-</h2>
+              </h2>
 
 
-<p className="text-5xl font-bold text-orange-600 mt-4">
+              <p className="text-5xl font-bold text-orange-600 mt-4">
 
-{orderCount}
+                {orderCount}
 
-</p>
+              </p>
 
-</div>
+            </div>
 
 
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:scale-105 transition">
 
-<div className="bg-white p-8 rounded-3xl shadow-lg hover:scale-105 transition">
+              <div className="text-5xl">
 
-<div className="text-5xl">
+                🧾
 
-🧾
+              </div>
 
-</div>
 
+              <h2 className="text-2xl font-bold mt-4">
 
-<h2 className="text-2xl font-bold mt-4">
+                Revenue
 
-Revenue
+              </h2>
 
-</h2>
 
+              <p className="text-4xl font-bold text-purple-600 mt-4">
 
-<p className="text-4xl font-bold text-purple-600 mt-4">
+                ₹{revenue}
 
-₹{revenue}
+              </p>
 
-</p>
+            </div>
 
-</div>
+          </div>
 
-</div>
 
+          {/* Quick Actions */}
 
+          <div className="mt-12">
 
-<div className="mt-12">
 
-<h2 className="text-3xl font-bold mb-6">
+            <h2 className="text-3xl font-bold mb-6">
 
-Quick Actions
+              Quick Actions
 
-</h2>
+            </h2>
 
 
-<div className="grid md:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-4 gap-6">
 
 
-<button
+              <button
 
-onClick={()=>navigate("/tables")}
+                onClick={() => navigate("/tables")}
 
-className="bg-blue-600 text-white p-6 rounded-2xl hover:scale-105 transition"
+                className="bg-blue-600 text-white p-6 rounded-2xl hover:scale-105 transition"
 
->
+              >
 
-🪑 Manage Tables
+                🪑 Manage Tables
 
-</button>
+              </button>
 
 
+              <button
 
-<button
+                onClick={() => navigate("/menu")}
 
-onClick={()=>navigate("/menu")}
+                className="bg-green-600 text-white p-6 rounded-2xl hover:scale-105 transition"
 
-className="bg-green-600 text-white p-6 rounded-2xl hover:scale-105 transition"
+              >
 
->
+                🍔 Manage Menu
 
-🍔 Manage Menu
+              </button>
 
-</button>
 
+              <button
 
+                onClick={() => navigate("/orders")}
 
-<button
+                className="bg-orange-600 text-white p-6 rounded-2xl hover:scale-105 transition"
 
-onClick={()=>navigate("/orders")}
+              >
 
-className="bg-orange-600 text-white p-6 rounded-2xl hover:scale-105 transition"
+                📦 Manage Orders
 
->
+              </button>
 
-📦 Manage Orders
 
-</button>
+              <button
 
+                onClick={() => navigate("/billing")}
 
+                className="bg-purple-600 text-white p-6 rounded-2xl hover:scale-105 transition"
 
-<button
+              >
 
-onClick={()=>navigate("/billing")}
+                🧾 Manage Billing
 
-className="bg-purple-600 text-white p-6 rounded-2xl hover:scale-105 transition"
+              </button>
 
->
+            </div>
 
-🧾 Manage Billing
+          </div>
 
-</button>
 
-</div>
+          {/* Today's Overview */}
 
-</div>
+          <div className="mt-12">
 
 
-</div>
+            <h2 className="text-3xl font-bold mb-6">
 
-</div>
+              Today's Overview
 
-</div>
+            </h2>
 
-);
+
+            <div className="grid md:grid-cols-3 gap-6">
+
+
+              <div className="bg-white p-6 rounded-3xl shadow">
+
+
+                <h3 className="text-xl font-semibold">
+
+                  📌 System Status
+
+                </h3>
+
+
+                <p className="mt-4 text-green-600 font-bold">
+
+                  Operational
+
+                </p>
+
+              </div>
+
+
+              <div className="bg-white p-6 rounded-3xl shadow">
+
+
+                <h3 className="text-xl font-semibold">
+
+                  👥 Active Role
+
+                </h3>
+
+
+                <p className="mt-4 font-bold text-blue-600">
+
+                  {localStorage.getItem("role")}
+
+                </p>
+
+              </div>
+
+
+              <div className="bg-white p-6 rounded-3xl shadow">
+
+
+                <h3 className="text-xl font-semibold">
+
+                  ⚡ ERP Version
+
+                </h3>
+
+
+                <p className="mt-4 font-bold text-purple-600">
+
+                  v1.0
+
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  );
 
 }
 

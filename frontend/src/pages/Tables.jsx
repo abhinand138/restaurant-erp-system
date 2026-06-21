@@ -149,9 +149,28 @@ function Tables() {
   };
 
 
+  const getStatusColor = (status) => {
+
+    if(status === "Available"){
+
+      return "bg-green-100 text-green-700";
+
+    }
+
+    if(status === "Occupied"){
+
+      return "bg-red-100 text-red-700";
+
+    }
+
+    return "bg-yellow-100 text-yellow-700";
+
+  };
+
+
   return (
 
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-gray-100">
 
       <Sidebar/>
 
@@ -169,7 +188,7 @@ function Tables() {
           </h1>
 
 
-          <div className="bg-white p-6 rounded-2xl shadow mb-10">
+          <div className="bg-white p-8 rounded-3xl shadow mb-10">
 
 
             <div className="grid md:grid-cols-3 gap-4">
@@ -213,11 +232,7 @@ function Tables() {
               />
 
 
-              <input
-
-                type="text"
-
-                placeholder="Status"
+              <select
 
                 value={status}
 
@@ -229,7 +244,36 @@ function Tables() {
 
                 className="border p-4 rounded-xl"
 
-              />
+              >
+
+                <option value="">
+
+                  Select Status
+
+                </option>
+
+
+                <option value="Available">
+
+                  🟢 Available
+
+                </option>
+
+
+                <option value="Occupied">
+
+                  🔴 Occupied
+
+                </option>
+
+
+                <option value="Reserved">
+
+                  🟡 Reserved
+
+                </option>
+
+              </select>
 
             </div>
 
@@ -238,15 +282,19 @@ function Tables() {
 
               onClick={saveTable}
 
-              className="mt-6 bg-blue-600 text-white px-8 py-3 rounded-xl"
+              className="mt-6 bg-blue-600 text-white px-8 py-3 rounded-xl hover:bg-blue-700 transition"
 
             >
 
-              {editId
+              {
+
+                editId
 
                 ? "Update Table"
 
-                : "Add Table"}
+                : "Add Table"
+
+              }
 
             </button>
 
@@ -255,77 +303,96 @@ function Tables() {
 
           <div className="space-y-4">
 
-            {tables.map((table)=>(
 
-              <div
+            {
 
-                key={table.id}
+              tables.map((table)=>(
 
-                className="bg-white shadow rounded-2xl p-6 flex justify-between items-center"
+                <div
 
-              >
+                  key={table.id}
 
+                  className="bg-white shadow rounded-3xl p-6 flex justify-between items-center hover:shadow-xl transition"
 
-                <div>
-
-                  <h2 className="text-2xl font-bold">
-
-                    {table.tableName}
-
-                  </h2>
+                >
 
 
-                  <p>
-
-                    Capacity : {table.capacity}
-
-                  </p>
+                  <div>
 
 
-                  <p>
+                    <h2 className="text-2xl font-bold">
 
-                    Status : {table.status}
+                      {table.tableName}
 
-                  </p>
+                    </h2>
+
+
+                    <p className="mt-2">
+
+                      👥 Capacity : {table.capacity}
+
+                    </p>
+
+
+                    <div
+
+                      className={`inline-block px-4 py-2 rounded-full mt-3 font-semibold ${getStatusColor(table.status)}`}
+
+                    >
+
+                      {table.status}
+
+                    </div>
+
+                  </div>
+
+
+                  <div className="flex gap-4">
+
+
+                    <button
+
+                      onClick={()=>
+
+                        editTable(table)
+
+                      }
+
+                      className="bg-yellow-500 text-white px-5 py-2 rounded-lg hover:bg-yellow-600"
+
+                    >
+
+                      ✏️ Edit
+
+                    </button>
+
+
+                    <button
+
+                      onClick={()=>
+
+                        deleteTable(table.id)
+
+                      }
+
+                      className="bg-red-500 text-white px-5 py-2 rounded-lg hover:bg-red-600"
+
+                    >
+
+                      🗑️ Delete
+
+                    </button>
+
+                  </div>
 
                 </div>
 
+              ))
 
-                <div className="flex gap-4">
-
-
-                  <button
-
-                    onClick={()=>editTable(table)}
-
-                    className="bg-yellow-500 text-white px-5 py-2 rounded-lg"
-
-                  >
-
-                    ✏️ Edit
-
-                  </button>
-
-
-                  <button
-
-                    onClick={()=>deleteTable(table.id)}
-
-                    className="bg-red-500 text-white px-5 py-2 rounded-lg"
-
-                  >
-
-                    🗑️ Delete
-
-                  </button>
-
-                </div>
-
-              </div>
-
-            ))}
+            }
 
           </div>
+
 
         </div>
 
