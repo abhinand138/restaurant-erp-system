@@ -4,8 +4,11 @@ import com.restaurant.backend.entity.MenuItem;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MenuItemRepository
+import java.util.Optional;
 
+public interface MenuItemRepository
 extends JpaRepository<MenuItem,Long>{
+
+    Optional<MenuItem> findByName(String name);
 
 }

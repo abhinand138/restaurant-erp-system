@@ -14,6 +14,12 @@ public class Billing {
 
     private Long id;
 
+    private String foodName;
+
+    private String tableName;
+
+    private int quantity;
+
     private double subtotal;
 
     private double gst;
@@ -34,6 +40,48 @@ public class Billing {
     public void setId(Long id) {
 
         this.id = id;
+
+    }
+
+
+    public String getFoodName() {
+
+        return foodName;
+
+    }
+
+
+    public void setFoodName(String foodName) {
+
+        this.foodName = foodName;
+
+    }
+
+
+    public String getTableName() {
+
+        return tableName;
+
+    }
+
+
+    public void setTableName(String tableName) {
+
+        this.tableName = tableName;
+
+    }
+
+
+    public int getQuantity() {
+
+        return quantity;
+
+    }
+
+
+    public void setQuantity(int quantity) {
+
+        this.quantity = quantity;
 
     }
 

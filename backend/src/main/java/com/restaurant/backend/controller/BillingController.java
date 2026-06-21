@@ -56,4 +56,12 @@ public class BillingController {
 
 }
 
+@GetMapping("/count")
+
+public long getBillCount(){
+
+    return service.getAllBills().size();
+
+}
+
 }

@@ -10,6 +10,10 @@ function Orders() {
 
   const [orders, setOrders] = useState([]);
 
+  const [menuItems, setMenuItems] = useState([]);
+
+  const [tables, setTables] = useState([]);
+
   const [foodName, setFoodName] = useState("");
 
   const [tableName, setTableName] = useState("");
@@ -25,6 +29,10 @@ function Orders() {
 
     fetchOrders();
 
+    fetchMenu();
+
+    fetchTables();
+
   }, []);
 
 
@@ -32,9 +40,59 @@ function Orders() {
 
     try {
 
-      const response = await api.get("/api/orders");
+      const response = await api.get(
+
+        "/api/orders"
+
+      );
 
       setOrders(response.data);
+
+    }
+
+    catch(error){
+
+      console.log(error);
+
+    }
+
+  };
+
+
+  const fetchMenu = async () => {
+
+    try {
+
+      const response = await api.get(
+
+        "/api/menu"
+
+      );
+
+      setMenuItems(response.data);
+
+    }
+
+    catch(error){
+
+      console.log(error);
+
+    }
+
+  };
+
+
+  const fetchTables = async () => {
+
+    try {
+
+      const response = await api.get(
+
+        "/api/tables"
+
+      );
+
+      setTables(response.data);
 
     }
 
@@ -161,7 +219,7 @@ function Orders() {
 
   return (
 
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-gray-100">
 
       <Sidebar/>
 
@@ -179,17 +237,13 @@ function Orders() {
           </h1>
 
 
-          <div className="bg-white p-6 rounded-2xl shadow mb-10">
+          <div className="bg-white p-6 rounded-3xl shadow mb-10">
 
 
             <div className="grid md:grid-cols-4 gap-4">
 
 
-              <input
-
-                type="text"
-
-                placeholder="Food Name"
+              <select
 
                 value={foodName}
 
@@ -201,14 +255,35 @@ function Orders() {
 
                 className="border p-4 rounded-xl"
 
-              />
+              >
+
+                <option value="">
+
+                  Select Food
+
+                </option>
 
 
-              <input
+                {menuItems.map((item)=>(
 
-                type="text"
+                  <option
 
-                placeholder="Table Name"
+                    key={item.id}
+
+                    value={item.name}
+
+                  >
+
+                    {item.name}
+
+                  </option>
+
+                ))}
+
+              </select>
+
+
+              <select
 
                 value={tableName}
 
@@ -220,7 +295,32 @@ function Orders() {
 
                 className="border p-4 rounded-xl"
 
-              />
+              >
+
+                <option value="">
+
+                  Select Table
+
+                </option>
+
+
+                {tables.map((table)=>(
+
+                  <option
+
+                    key={table.id}
+
+                    value={table.tableName}
+
+                  >
+
+                    {table.tableName}
+
+                  </option>
+
+                ))}
+
+              </select>
 
 
               <input
@@ -242,11 +342,7 @@ function Orders() {
               />
 
 
-              <input
-
-                type="text"
-
-                placeholder="Status"
+              <select
 
                 value={status}
 
@@ -258,7 +354,36 @@ function Orders() {
 
                 className="border p-4 rounded-xl"
 
-              />
+              >
+
+                <option value="">
+
+                  Select Status
+
+                </option>
+
+
+                <option value="Preparing">
+
+                  Preparing
+
+                </option>
+
+
+                <option value="Ready">
+
+                  Ready
+
+                </option>
+
+
+                <option value="Served">
+
+                  Served
+
+                </option>
+
+              </select>
 
             </div>
 
@@ -267,7 +392,7 @@ function Orders() {
 
               onClick={saveOrder}
 
-              className="mt-6 bg-blue-600 text-white px-8 py-3 rounded-xl"
+              className="mt-6 bg-blue-600 text-white px-8 py-3 rounded-xl hover:bg-blue-700"
 
             >
 
@@ -291,7 +416,7 @@ function Orders() {
 
                 key={order.id}
 
-                className="bg-white shadow rounded-2xl p-6 flex justify-between items-center"
+                className="bg-white shadow rounded-3xl p-6 flex justify-between items-center"
 
               >
 
@@ -307,21 +432,21 @@ function Orders() {
 
                   <p>
 
-                    Table : {order.tableName}
+                    🪑 Table : {order.tableName}
 
                   </p>
 
 
                   <p>
 
-                    Quantity : {order.quantity}
+                    📦 Quantity : {order.quantity}
 
                   </p>
 
 
                   <p>
 
-                    Status : {order.status}
+                    🚚 Status : {order.status}
 
                   </p>
 
@@ -363,6 +488,7 @@ function Orders() {
             ))}
 
           </div>
+
 
         </div>
 
