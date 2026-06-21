@@ -50,4 +50,33 @@ public class OrderController {
 
 }
 
+@PutMapping("/{id}")
+
+public Order updateOrder(
+
+        @PathVariable Long id,
+
+        @RequestBody Order order){
+
+    return service.updateOrder(
+
+            id,
+
+            order
+
+    );
+
+}
+
+
+@DeleteMapping("/{id}")
+
+public void deleteOrder(
+
+        @PathVariable Long id){
+
+    service.deleteOrder(id);
+
+}
+
 }

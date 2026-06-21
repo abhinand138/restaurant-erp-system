@@ -32,4 +32,59 @@ public class OrderService {
 
     }
 
+
+    public Order updateOrder(
+
+            Long id,
+
+            Order order){
+
+        Order existing =
+
+                repository.findById(id)
+
+                .orElseThrow();
+
+
+        existing.setFoodName(
+
+                order.getFoodName()
+
+        );
+
+
+        existing.setTableName(
+
+                order.getTableName()
+
+        );
+
+
+        existing.setQuantity(
+
+                order.getQuantity()
+
+        );
+
+
+        existing.setStatus(
+
+                order.getStatus()
+
+        );
+
+
+        return repository.save(existing);
+
+    }
+
+
+    public void deleteOrder(
+
+            Long id){
+
+        repository.deleteById(id);
+
+    }
+
 }
