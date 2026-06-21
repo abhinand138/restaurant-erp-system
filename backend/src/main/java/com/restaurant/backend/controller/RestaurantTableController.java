@@ -50,4 +50,33 @@ public class RestaurantTableController {
 
 }
 
+@PutMapping("/{id}")
+
+public RestaurantTable updateTable(
+
+        @PathVariable Long id,
+
+        @RequestBody RestaurantTable table){
+
+    return service.updateTable(
+
+            id,
+
+            table
+
+    );
+
+}
+
+
+@DeleteMapping("/{id}")
+
+public void deleteTable(
+
+        @PathVariable Long id){
+
+    service.deleteTable(id);
+
+}
+
 }

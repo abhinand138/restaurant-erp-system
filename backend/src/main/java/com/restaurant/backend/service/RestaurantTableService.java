@@ -19,7 +19,8 @@ public class RestaurantTableService {
     private RestaurantTableRepository repository;
 
 
-    public RestaurantTable addTable(RestaurantTable table){
+    public RestaurantTable addTable(
+            RestaurantTable table){
 
         return repository.save(table);
 
@@ -29,6 +30,54 @@ public class RestaurantTableService {
     public List<RestaurantTable> getAllTables(){
 
         return repository.findAll();
+
+    }
+
+
+    public RestaurantTable updateTable(
+
+            Long id,
+
+            RestaurantTable table){
+
+        RestaurantTable existing =
+
+                repository.findById(id)
+
+                .orElseThrow();
+
+
+        existing.setTableName(
+
+                table.getTableName()
+
+        );
+
+
+        existing.setCapacity(
+
+                table.getCapacity()
+
+        );
+
+
+        existing.setStatus(
+
+                table.getStatus()
+
+        );
+
+
+        return repository.save(existing);
+
+    }
+
+
+    public void deleteTable(
+
+            Long id){
+
+        repository.deleteById(id);
 
     }
 
