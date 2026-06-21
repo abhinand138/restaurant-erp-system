@@ -50,4 +50,33 @@ public class MenuItemController {
 
 }
 
+@PutMapping("/{id}")
+
+public MenuItem updateMenu(
+
+        @PathVariable Long id,
+
+        @RequestBody MenuItem item){
+
+    return service.updateMenuItem(
+
+            id,
+
+            item
+
+    );
+
+}
+
+
+@DeleteMapping("/{id}")
+
+public void deleteMenu(
+
+        @PathVariable Long id){
+
+    service.deleteMenuItem(id);
+
+}
+
 }

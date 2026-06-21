@@ -32,4 +32,52 @@ public class MenuItemService {
 
     }
 
+
+    public MenuItem updateMenuItem(
+
+            Long id,
+
+            MenuItem item){
+
+        MenuItem existing =
+
+                repository.findById(id)
+
+                .orElseThrow();
+
+
+        existing.setName(
+
+                item.getName()
+
+        );
+
+
+        existing.setPrice(
+
+                item.getPrice()
+
+        );
+
+
+        existing.setCategory(
+
+                item.getCategory()
+
+        );
+
+
+        return repository.save(existing);
+
+    }
+
+
+    public void deleteMenuItem(
+
+            Long id){
+
+        repository.deleteById(id);
+
+    }
+
 }

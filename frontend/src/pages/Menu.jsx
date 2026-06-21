@@ -2,13 +2,21 @@ import { useEffect, useState } from "react";
 
 import Sidebar from "../components/Sidebar";
 
-import api from "../services/api";
-
 import Navbar from "../components/Navbar";
+
+import api from "../services/api";
 
 function Menu() {
 
   const [menuItems, setMenuItems] = useState([]);
+
+  const [name, setName] = useState("");
+
+  const [price, setPrice] = useState("");
+
+  const [category, setCategory] = useState("");
+
+  const [editId, setEditId] = useState(null);
 
 
   useEffect(() => {
@@ -28,7 +36,7 @@ function Menu() {
 
     }
 
-    catch(error){
+    catch (error) {
 
       console.log(error);
 
@@ -37,58 +45,287 @@ function Menu() {
   };
 
 
- return (
+  const saveMenu = async () => {
 
-  <div className="flex min-h-screen">
+    try {
 
-    <Sidebar/>
+      if (editId) {
 
-    <div className="flex-1">
+        await api.put(
 
-      <Navbar/>
+          `/api/menu/${editId}`,
 
-      <div className="p-10">
+          {
 
-        <h1 className="text-3xl font-bold mb-6">
+            name,
 
-          Menu Management
+            price,
 
-        </h1>
+            category
+
+          }
+
+        );
+
+      }
+
+      else {
+
+        await api.post(
+
+          "/api/menu",
+
+          {
+
+            name,
+
+            price,
+
+            category
+
+          }
+
+        );
+
+      }
 
 
-        <div className="space-y-4">
+      setName("");
 
-          {menuItems.map((item) => (
+      setPrice("");
 
-            <div
+      setCategory("");
 
-              key={item.id}
+      setEditId(null);
 
-              className="border p-4 rounded shadow"
 
-            >
+      fetchMenu();
 
-              <h2 className="text-xl font-bold">
+    }
 
-                {item.name}
+    catch (error) {
 
-              </h2>
+      console.log(error);
 
-              <p>
+    }
 
-                Price : ₹{item.price}
+  };
 
-              </p>
 
-              <p>
+  const editMenu = (item) => {
 
-                Category : {item.category}
+    setEditId(item.id);
 
-              </p>
+    setName(item.name);
+
+    setPrice(item.price);
+
+    setCategory(item.category);
+
+  };
+
+
+  const deleteMenu = async (id) => {
+
+    try {
+
+      await api.delete(
+
+        `/api/menu/${id}`
+
+      );
+
+
+      fetchMenu();
+
+    }
+
+    catch (error) {
+
+      console.log(error);
+
+    }
+
+  };
+
+
+  return (
+
+    <div className="flex min-h-screen">
+
+      <Sidebar/>
+
+      <div className="flex-1">
+
+        <Navbar/>
+
+        <div className="p-10">
+
+
+          <h1 className="text-4xl font-bold mb-8">
+
+            🍔 Menu Management
+
+          </h1>
+
+
+          <div className="bg-white p-6 rounded-2xl shadow mb-10">
+
+
+            <div className="grid md:grid-cols-3 gap-4">
+
+
+              <input
+
+                type="text"
+
+                placeholder="Food Name"
+
+                value={name}
+
+                onChange={(e)=>
+
+                  setName(e.target.value)
+
+                }
+
+                className="border p-4 rounded-xl"
+
+              />
+
+
+              <input
+
+                type="number"
+
+                placeholder="Price"
+
+                value={price}
+
+                onChange={(e)=>
+
+                  setPrice(e.target.value)
+
+                }
+
+                className="border p-4 rounded-xl"
+
+              />
+
+
+              <input
+
+                type="text"
+
+                placeholder="Category"
+
+                value={category}
+
+                onChange={(e)=>
+
+                  setCategory(e.target.value)
+
+                }
+
+                className="border p-4 rounded-xl"
+
+              />
 
             </div>
 
-          ))}
+
+            <button
+
+              onClick={saveMenu}
+
+              className="mt-6 bg-blue-600 text-white px-8 py-3 rounded-xl"
+
+            >
+
+              {editId
+
+                ? "Update Item"
+
+                : "Add Item"}
+
+            </button>
+
+          </div>
+
+
+          <div className="space-y-4">
+
+            {menuItems.map((item)=>(
+
+              <div
+
+                key={item.id}
+
+                className="bg-white shadow rounded-2xl p-6 flex justify-between items-center"
+
+              >
+
+
+                <div>
+
+                  <h2 className="text-2xl font-bold">
+
+                    {item.name}
+
+                  </h2>
+
+
+                  <p>
+
+                    ₹{item.price}
+
+                  </p>
+
+
+                  <p>
+
+                    {item.category}
+
+                  </p>
+
+                </div>
+
+
+                <div className="flex gap-4">
+
+
+                  <button
+
+                    onClick={()=>editMenu(item)}
+
+                    className="bg-yellow-500 text-white px-5 py-2 rounded-lg"
+
+                  >
+
+                    ✏️ Edit
+
+                  </button>
+
+
+                  <button
+
+                    onClick={()=>deleteMenu(item.id)}
+
+                    className="bg-red-500 text-white px-5 py-2 rounded-lg"
+
+                  >
+
+                    🗑️ Delete
+
+                  </button>
+
+                </div>
+
+              </div>
+
+            ))}
+
+          </div>
 
         </div>
 
@@ -96,9 +333,8 @@ function Menu() {
 
     </div>
 
-  </div>
+  );
 
-);
 }
 
 export default Menu;
