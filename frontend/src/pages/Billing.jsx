@@ -4,7 +4,11 @@ import Sidebar from "../components/Sidebar";
 
 import Navbar from "../components/Navbar";
 
+import Footer from "../components/Footer";
+
 import api from "../services/api";
+
+import jsPDF from "jspdf";
 
 function Billing() {
 
@@ -180,9 +184,126 @@ function Billing() {
   };
 
 
+  const downloadBill = (bill) => {
+
+    const doc = new jsPDF();
+
+
+    doc.setFontSize(22);
+
+    doc.text(
+
+      "Restaurant ERP Invoice",
+
+      20,
+
+      20
+
+    );
+
+
+    doc.setFontSize(12);
+
+    doc.text(
+
+      `Bill ID : ${bill.id}`,
+
+      20,
+
+      40
+
+    );
+
+
+    doc.text(
+
+      `Food : ${bill.foodName}`,
+
+      20,
+
+      55
+
+    );
+
+
+    doc.text(
+
+      `Table : ${bill.tableName}`,
+
+      20,
+
+      70
+
+    );
+
+
+    doc.text(
+
+      `Quantity : ${bill.quantity}`,
+
+      20,
+
+      85
+
+    );
+
+
+    doc.text(
+
+      `Subtotal : ₹${bill.subtotal}`,
+
+      20,
+
+      100
+
+    );
+
+
+    doc.text(
+
+      `GST : ₹${bill.gst}`,
+
+      20,
+
+      115
+
+    );
+
+
+    doc.text(
+
+      `Total : ₹${bill.total}`,
+
+      20,
+
+      130
+
+    );
+
+
+    doc.text(
+
+      "Thank you for visiting!",
+
+      20,
+
+      160
+
+    );
+
+
+    doc.save(
+
+      `Bill-${bill.id}.pdf`
+
+    );
+
+  };
+
+
   return (
 
-<div className="flex min-h-screen">
+<div className="flex min-h-screen bg-gray-100">
 
 <Sidebar/>
 
@@ -236,7 +357,7 @@ value={order.id}
 
 {order.foodName}
 
-| {order.tableName}
+ | {order.tableName}
 
 </option>
 
@@ -249,7 +370,7 @@ value={order.id}
 
 onClick={generateBill}
 
-className="mt-6 bg-blue-600 text-white px-8 py-3 rounded-xl"
+className="mt-6 bg-blue-600 text-white px-8 py-3 rounded-xl hover:bg-blue-700"
 
 >
 
@@ -265,9 +386,14 @@ Generate Bill
 
 <div className="bg-blue-600 text-white p-8 rounded-3xl">
 
-<h2>Total Bills</h2>
+<h2 className="text-2xl">
 
-<p className="text-5xl font-bold">
+Total Bills
+
+</h2>
+
+
+<p className="text-5xl font-bold mt-4">
 
 {bills.length}
 
@@ -278,9 +404,14 @@ Generate Bill
 
 <div className="bg-green-600 text-white p-8 rounded-3xl">
 
-<h2>Revenue</h2>
+<h2 className="text-2xl">
 
-<p className="text-5xl font-bold">
+Revenue
+
+</h2>
+
+
+<p className="text-5xl font-bold mt-4">
 
 ₹{
 
@@ -303,9 +434,14 @@ acc+bill.total,
 
 <div className="bg-purple-600 text-white p-8 rounded-3xl">
 
-<h2>Average Bill</h2>
+<h2 className="text-2xl">
 
-<p className="text-5xl font-bold">
+Average Bill
+
+</h2>
+
+
+<p className="text-5xl font-bold mt-4">
 
 ₹{
 
@@ -355,6 +491,7 @@ className="bg-white p-6 rounded-3xl shadow"
 
 >
 
+
 <h2 className="text-2xl font-bold">
 
 🍔 {bill.foodName}
@@ -396,11 +533,30 @@ Total : ₹{bill.total}
 
 </p>
 
+
+<button
+
+onClick={()=>
+
+downloadBill(bill)
+
+}
+
+className="mt-4 bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700"
+
+>
+
+📄 Download PDF
+
+</button>
+
 </div>
 
 ))}
 
 </div>
+
+<Footer/>
 
 
 </div>

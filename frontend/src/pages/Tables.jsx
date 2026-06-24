@@ -4,6 +4,11 @@ import Sidebar from "../components/Sidebar";
 
 import Navbar from "../components/Navbar";
 
+
+import Footer from "../components/Footer";
+
+
+
 import api from "../services/api";
 
 function Tables() {
@@ -392,6 +397,8 @@ function Tables() {
             }
 
           </div>
+
+          <Footer/>
 
 
         </div>
